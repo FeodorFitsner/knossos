@@ -65,6 +65,7 @@ Q_OBJECT
         friend void verticalSplittingPlane(const Coordinate & seed);
         friend class SegmentationObjectModel;
         friend class Segmentation;
+        friend class SegmentationView;
         static uint64_t highestId;
         std::vector<uint64_t> objects;
         std::size_t selectedObjectsCount = 0;
