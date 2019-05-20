@@ -474,9 +474,8 @@ SegmentationView::SegmentationView(QWidget * const parent) : QWidget(parent), ca
                 QElapsedTimer time;
                 time.start();
 
-                const auto & allcubes = Loader::Controller::singleton().getAllModifiedCubes();
-                const auto & cubes = allcubes[Dataset::current().magIndex];
-
+//                const auto & allcubes = Loader::Controller::singleton().getAllModifiedCubes();
+//                const auto & cubes = allcubes[Dataset::current().magIndex];
 
                 const auto cpos = state->viewerState->currentPosition.cube(128, Dataset::current().scaleFactor) - state->M/2;
                 for (int z = cpos.z; z < cpos.z + state->M; ++z)
