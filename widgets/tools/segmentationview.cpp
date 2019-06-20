@@ -474,25 +474,7 @@ SegmentationView::SegmentationView(QWidget * const parent) : QWidget(parent), ca
                 QElapsedTimer time;
                 time.start();
 
-//                const auto & allcubes = Loader::Controller::singleton().getAllModifiedCubes();
-//                const auto & cubes = allcubes[Dataset::current().magIndex];
-
-                const auto cpos = state->viewerState->currentPosition.cube(128, Dataset::current().scaleFactor) - state->M/2;
-                for (int z = cpos.z; z < cpos.z + state->M; ++z)
-                for (int y = cpos.y; y < cpos.y + state->M; ++y)
-                for (int x = cpos.x; x < cpos.x + state->M; ++x) {
-                    if (auto pair = getRawCube(Dataset::datasets[Segmentation::singleton().layerId].cube2global({x, y, z})); pair.first) {
-                        for (auto && slice : getCubeRef(pair.second))
-                        for (auto && row : slice)
-                        for (auto && elem : row) {
-                            if (Segmentation::singleton().isSubObjectIdSelected(elem)) {
-                                elem = newid;
-                            }
-                        }
-                    }
-
-                    Loader::Controller::singleton().markOcCubeAsModified({x, y, z}, Dataset::current().magnification);
-                }
+                assignNewIdInMovementArea(newid);
 
                 return qDebug() << "id assign" << time.nsecsElapsed() / 1e9;
             });
