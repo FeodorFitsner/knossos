@@ -285,8 +285,8 @@ auto generateMeshForSubobjectID(const std::unordered_map<std::uint64_t, std::uin
     } else {
         QSignalBlocker blocker(Segmentation::singleton());
         addMesh(obj2verts, [&](auto & elem, auto normals, auto colors){
-            const auto oid = Segmentation::singleton().largestObjectContainingSubobjectId(elem.first, floatCoordinate{elem.second[0], elem.second[1], elem.second[2]});
-            Skeletonizer::singleton().addMeshToTree(oid, elem.second, normals, obj2faces[elem.first], colors, GL_TRIANGLES);
+            const auto oindex = Segmentation::singleton().largestObjectContainingSubobjectId(elem.first, floatCoordinate{elem.second[0], elem.second[1], elem.second[2]});
+            Skeletonizer::singleton().addMeshToTree(Segmentation::singleton().objects[oindex].id, elem.second, normals, obj2faces[elem.first], colors, GL_TRIANGLES);
         });
         blocker.unblock();
         Segmentation::singleton().resetData();
