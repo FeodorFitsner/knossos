@@ -850,7 +850,7 @@ void ViewportOrtho::renderViewport(const RenderOptions &options) {
         glMatrixMode(GL_PROJECTION);
         glPushMatrix();
         glLoadIdentity();
-        glOrtho(-displayedIsoPx, +displayedIsoPx, -displayedIsoPx, +displayedIsoPx, -(0.5), -(-state->skeletonState->volBoundary()));
+        glOrtho(-displayedIsoPx, +displayedIsoPx, -displayedIsoPx, +displayedIsoPx, 0, -(-state->skeletonState->volBoundary()));
         glMatrixMode(GL_MODELVIEW);
 
         glEnable(GL_DEPTH_TEST);
@@ -1056,7 +1056,6 @@ void Viewport3D::renderViewport(const RenderOptions &options) {
 void ViewportBase::renderMeshBuffer(Mesh & buf) {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glTranslatef(0.5, 0.5, 0.5);
 
     // get modelview and projection matrices
     GLfloat modelview_mat[4][4];
@@ -1131,7 +1130,6 @@ void ViewportBase::renderMeshBuffer(Mesh & buf) {
 void Viewport3D::renderMeshBufferIds(Mesh &buf) {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glTranslatef(0.5, 0.5, 0.5);
     ViewportBase::renderMeshBufferIds(buf);
     glPopMatrix();
 }
@@ -1141,7 +1139,7 @@ void ViewportOrtho::renderMeshBufferIds(Mesh &buf) {
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    glOrtho(-displayedIsoPx, +displayedIsoPx, -displayedIsoPx, +displayedIsoPx, -(0.5), -(-state->skeletonState->volBoundary()));
+    glOrtho(-displayedIsoPx, +displayedIsoPx, -displayedIsoPx, +displayedIsoPx, 0, -(-state->skeletonState->volBoundary()));
     glMatrixMode(GL_MODELVIEW);
     glEnable(GL_DEPTH_TEST);
     ViewportBase::renderMeshBufferIds(buf);
