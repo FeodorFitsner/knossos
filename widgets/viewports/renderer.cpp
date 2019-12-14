@@ -1127,6 +1127,7 @@ void ViewportBase::renderMeshBuffer(Mesh & buf) {
     meshShader.release();
     glPopMatrix();
 }
+
 void Viewport3D::renderMeshBufferIds(Mesh &buf) {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
